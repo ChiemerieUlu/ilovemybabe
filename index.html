@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="i spent my time to code this thing, use your head o!!!!!!!!!!!!!">
+    <title>Will You Be My Girlfriend?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f3e7ff 0%, #e8d5f7 25%, #d4b8e8 50%, #c9a8e0 75%, #b8d4e8 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating hydrangea petals */
+        .petal {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #c9a8e0 0%, #a78bc9 100%);
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.6;
+            animation: float 15s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal:nth-child(odd) {
+            background: radial-gradient(circle, #b8d4e8 0%, #8bb8d4 100%);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Flower decorations */
+        .flower-decor {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.8;
+            animation: gentle-bob 3s ease-in-out infinite;
+        }
+
+        .flower-decor.left {
+            left: 5%;
+            top: 10%;
+        }
+
+        .flower-decor.right {
+            right: 5%;
+            bottom: 10%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes gentle-bob {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* Main card */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 
+                0 20px 60px rgba(167, 126, 196, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            animation: card-appear 1s ease-out;
+        }
+
+        @keyframes card-appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Heart */
+        .heart-container {
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 40px;
+            height: 64px;
+            background: linear-gradient(135deg, #c9a8e0 0%, #a78bc9 50%, #8bb8d4 100%);
+            border-radius: 40px 40px 0 0;
+            position: absolute;
+            top: 0;
+        }
+
+        .heart::before {
+            left: 40px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+
+        /* Title */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #7b5a9e;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(123, 90, 158, 0.2);
+        }
+
+        /* Subtitle */
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b6fa8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        }
+
+        @keyframes image-glow {
+            0% { box-shadow: 0 10px 30px rgba(167, 126, 196, 0.3); }
+            100% { box-shadow: 0 15px 40px rgba(167, 126, 196, 0.5); }
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #c9a8e0 0%, #a78bc9 50%, #8bb8d4 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(167, 126, 196, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(167, 126, 196, 0.5);
+        }
+
+        .btn-yes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-yes:hover::before {
+            left: 100%;
+        }
+
+        .btn-no {
+            background: white;
+            color: #9b7bb8;
+            border: 2px solid #d4b8e8;
+            box-shadow: 0 4px 15px rgba(167, 126, 196, 0.2);
+        }
+
+        .btn-no:hover {
+            background: #f8f0ff;
+            transform: translateY(-2px);
+        }
+
+        /* Response message */
+        .response {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f3e7ff 0%, #e8d5f7 100%);
+            border-radius: 20px;
+            animation: response-appear 0.5s ease-out;
+        }
+
+        @keyframes response-appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .response h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #7b5a9e;
+            margin-bottom: 10px;
+        }
+
+        .response p {
+            color: #8b6fa8;
+            font-size: 1.1rem;
+        }
+
+        .response .big-heart {
+            font-size: 4rem;
+            margin: 15px 0;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card {
+                padding: 35px 25px;
+            }
+            
+            .flower-decor {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .hydrangea-img {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Floating petals -->
+    <div class="petal" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="petal" style="left: 25%; animation-delay: 2s;"></div>
+    <div class="petal" style="left: 40%; animation-delay: 4s;"></div>
+    <div class="petal" style="left: 55%; animation-delay: 1s;"></div>
+    <div class="petal" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="petal" style="left: 85%; animation-delay: 5s;"></div>
+    <div class="petal" style="left: 15%; animation-delay: 7s;"></div>
+    <div class="petal" style="left: 90%; animation-delay: 6s;"></div>
+
+    <!-- Flower decorations -->
+    <img src="hydrangea1.png" alt="" class="flower-decor left">
+    <img src="hydrangea2.png" alt="" class="flower-decor right">
+
+    <div class="container">
+        <div class="card">
+            <div class="heart-container">
+                <div class="heart"></div>
+            </div>
+            
+            <h1>Adeyemi Oluwarantimi Ajoke Will You Be My Girlfriend?</h1>
+            
+            <p class="subtitle">
+                From the moment I met you, my world became more beautiful.<br>
+                You make every day feel like spring.
+            </p>
+            
+            <img src="hydrangea1.png" alt="Beautiful hydrangeas" class="hydrangea-img">
+            
+            <div class="buttons">
+                <button class="btn btn-yes" onclick="sayYes()">Yes! 💜</button>
+                <button class="btn btn-no" onclick="sayNo()">No</button>
+            </div>
+            
+            <div class="response" id="yesResponse">
+                <div class="big-heart">💜</div>
+                <h2>You Said Yes!</h2>
+                <p>You've made me the happiest person alive!<br>I promise to cherish you always.</p>
+            </div>
+            
+            <div class="response" id="noResponse">
+                <h2>Are you sure? 🥺</h2>
+                <p>Take your time... I'll be here waiting!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#c9a8e0', '#a78bc9', '#8bb8d4', '#d4b8e8', '#e8d5f7', '#f3e7ff'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    document.body.appendChild(confetti);
+                    
+                    // Animate confetti
+                    let posY = -10;
+                    let posX = parseFloat(confetti.style.left);
+                    let rotation = 0;
+                    const speed = Math.random() * 3 + 2;
+                    const drift = (Math.random() - 0.5) * 2;
+                    
+                    const fall = setInterval(() => {
+                        posY += speed;
+                        posX += drift;
+                        rotation += 5;
+                        confetti.style.top = posY + 'px';
+                        confetti.style.left = posX + 'vw';
+                        confetti.style.transform = `rotate(${rotation}deg)`;
+                        
+                        if (posY > window.innerHeight) {
+                            clearInterval(fall);
+                            confetti.remove();
+                        }
+                    }, 20);
+                }, i * 30);
+            }
+        }
+
+        // Say Yes function
+        function sayYes() {
+            document.getElementById('yesResponse').style.display = 'block';
+            document.getElementById('noResponse').style.display = 'none';
+            document.querySelector('.buttons').style.display = 'none';
+            createConfetti();
+            
+            // Add extra hearts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = ['💜', '💙', '💗', '💖'][Math.floor(Math.random() * 4)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '100vh';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '50';
+                    document.body.appendChild(heart);
+                    
+                    let pos = 100;
+                    const rise = setInterval(() => {
+                        pos -= 2;
+                        heart.style.top = pos + 'vh';
+                        heart.style.opacity = pos / 100;
+                        
+                        if (pos < -10) {
+                            clearInterval(rise);
+                            heart.remove();
+                        }
+                    }, 20);
+                }, i * 200);
+            }
+        }
+
+        // Say No function - makes the button run away
+        function sayNo() {
+            const noBtn = document.querySelector('.btn-no');
+            const yesBtn = document.querySelector('.btn-yes');
+            
+            // Move the No button to a random position
+            const maxX = window.innerWidth - 150;
+            const maxY = window.innerHeight - 80;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.zIndex = '100';
+            noBtn.textContent = 'Try again!';
+            
+            // Grow the Yes button
+            const currentScale = parseFloat(yesBtn.dataset.scale) || 1;
+            const newScale = Math.min(currentScale + 0.2, 2);
+            yesBtn.dataset.scale = newScale;
+            yesBtn.style.transform = `scale(${newScale})`;
+            
+            // Change Yes button text
+            const texts = ['Yes! 💜', 'Please say yes! 🥺', 'I know you want to! 💕', 'Come on! 💗', 'Pretty please! 💖'];
+            yesBtn.textContent = texts[Math.min(Math.floor(newScale * 2) - 2, texts.length - 1)];
+        }
+
+        // Add mouse move effect for subtle parallax
+        document.addEventListener('mousemove', (e) => {
+            const flowers = document.querySelectorAll('.flower-decor');
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            flowers.forEach((flower, index) => {
+                const factor = index === 0 ? 1 : -1;
+                flower.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+            });
+        });
+    </script>
+    </script>
+
+    <footer style="text-align:center; padding:12px 8px; font-size:0.95rem; color:#6b4f86; background:rgba(255,255,255,0.7); border-top:1px solid rgba(167,126,196,0.12); position:relative; z-index:10;">
+        <p style="margin:0;">
+            developed by your man Ulu Abdullah — <a href="https://ulu-dev-folio.vercel.app" rel="noopener noreferrer">ulu-dev-folio.vercel.app</a>
+        </p>
+    </footer>
+
+</body>
+</html>
